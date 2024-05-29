@@ -32,6 +32,7 @@ const UsersTable = () => {
 
 
     const handleClick = (user) => {
+        localStorage.setItem("currentPage", currentPage)
         navigate(`/user/${user.id}`);
     };
 
@@ -40,7 +41,6 @@ const UsersTable = () => {
     const displayedUsers = users.slice(indexOfFirstUser, indexOfLastUser + 1);
 
     const handleChangePage = (event, newPage) => {
-        localStorage.setItem("currentPage", newPage)
         setCurrentPage(newPage);
     };
 
