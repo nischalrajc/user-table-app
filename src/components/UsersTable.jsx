@@ -62,7 +62,7 @@ const UsersTable = () => {
                                     </TableHead>
                                     <TableBody>
                                         {displayedUsers.map((user) => (
-                                            <TableRow key={user.id} hover onClick={() => handleClick(user)}>
+                                            <TableRow key={user.id} hover onClick={() => handleClick(user)} style={{ cursor: 'pointer' }}>
                                                 <TableCell>{user.name}</TableCell>
                                                 <TableCell>{user.email}</TableCell>
                                                 <TableCell>{user.mobile}</TableCell>
