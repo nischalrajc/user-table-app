@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 const UsersTable = () => {
+
     const users = Array.from({ length: 800 }, (_, id) => ({
         id: id + 1,
         name: `User ${id + 1}`,
@@ -20,7 +21,7 @@ const UsersTable = () => {
     useEffect(() => {
         const page = localStorage.getItem("currentPage");
         const pageNo = Number(page);
-        
+
         if (page && !isNaN(pageNo)) {
             setCurrentPage(pageNo);
             localStorage.removeItem("currentPage");
@@ -45,45 +46,49 @@ const UsersTable = () => {
 
 
     return (
-        <>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <Paper>
-                        <TableContainer>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>Mobile</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {displayedUsers.map((user) => (
-                                        <TableRow key={user.id} hover onClick={() => handleClick(user)}>
-                                            <TableCell>{user.name}</TableCell>
-                                            <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.mobile}</TableCell>
+        
+            <div>
+                <Grid container spacing={2} justifyContent="center" alignItems="center" mt={1} >
+                    <Grid item xs={6}>
+                        <Paper>
+                            <TableContainer>
+                                <Table style={{ backgroundColor: '#F6F5F2' }}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell>Email</TableCell>
+                                            <TableCell>Mobile</TableCell>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
+                                    </TableHead>
+                                    <TableBody>
+                                        {displayedUsers.map((user) => (
+                                            <TableRow key={user.id} hover onClick={() => handleClick(user)}>
+                                                <TableCell>{user.name}</TableCell>
+                                                <TableCell>{user.email}</TableCell>
+                                                <TableCell>{user.mobile}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Paper>
+                    </Grid>
                 </Grid>
-            </Grid>
 
-            <Stack spacing={2}>
-                <Pagination
-                    count={Math.ceil(users.length / rowsPerPage)}
-                    color="primary"
-                    page={currentPage}
-                    onChange={handleChangePage}
-                />
-            </Stack>
+                <Grid container spacing={2} justifyContent="center" alignItems="center" mt={1}>
+                    <Grid item>
+                        <Stack spacing={2} alignItems="center">
+                            <Pagination
+                                count={Math.ceil(users.length / rowsPerPage)}
+                                color="primary"
+                                page={currentPage}
+                                onChange={handleChangePage}
+                            />
+                        </Stack>
+                    </Grid>
+                </Grid>
 
-
-        </>
+            </div>
     );
 };
 

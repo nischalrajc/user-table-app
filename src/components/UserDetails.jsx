@@ -1,33 +1,31 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Grid, Paper, Typography, Button } from '@mui/material';
 
 const UserDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
-    const fromPage = location.state?.fromPage || 1;
-
-    // useEffect(() => {
-    //     if (!location.state?.fromPage) {
-    //         navigate(location.pathname, { replace: true, state: { fromPage } });
-    //     }
-    // }, [location, navigate, fromPage]);
 
     const handleBack = () => {
         navigate('/');
     };
 
-
     return (
-        <div>
-            <h1>User Detail</h1>
-            <p>ID: {id}</p>
-            <p>Name: User {id}</p>
-            <p>Email: user{id}@example.com</p>
-            <p>Mobile: 123-456-789{id}</p>
-            <button onClick={handleBack}>Back</button>
-        </div>
+        <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
+            <Grid item>
+                <Paper style={{ padding: '20px', textAlign: 'center' }}>
+                    <Typography variant="h4">User Detail</Typography>
+                    <Typography variant="body1">ID: {id}</Typography>
+                    <Typography variant="body1">Name: User {id}</Typography>
+                    <Typography variant="body1">Email: user{id}@example.com</Typography>
+                    <Typography variant="body1">Mobile: 123-456-789{id}</Typography>
+                    <Button variant="contained"  style={{ backgroundColor: '#102C57', marginTop: '20px' }} onClick={handleBack}>
+                        Back
+                    </Button>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 };
 
